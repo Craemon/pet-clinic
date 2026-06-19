@@ -19,5 +19,8 @@ jobs:
 
       - name: Compile, build and push
         run: |
-          #### AUFGABE COMPILE, DOCKER BUILD UND PUSH
-            # hier ist Platz für maven package und docker build
+            mvn package
+            docker build --tag ghcr.io/craemon/pet-clinic:latest -f Dockerfile .
+            docker login --username craemon --password $GITHUB_ACCESSTOKEN ghcr.io
+            docker push ghcr.io/craemon/pet-clinic:latest
+          
